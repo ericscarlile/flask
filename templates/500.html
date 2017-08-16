@@ -1,5 +1,9 @@
-{% extends 'base.html' %}
-    {% block title %}Page Not Found{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% extends 'base.html' %}
+    {% block title %}Error{% endblock %}
     {% block head %}
     <style>
 
@@ -52,8 +56,13 @@
 
 
 {% block content %}
-    <h1>Page Not Found</h1>
-    <p>Sorry, but the page you were trying to view does not exist.</p>
+    <h1>Something went wrong!</h1>
+    <p>And we are working on it.</p>
 
 <!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
-{% endblock %}
+{% endblock %}</title>
+</head>
+<body>
+
+</body>
+</html>

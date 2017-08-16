@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add form</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %}Add URL{% endblock %}
+{% block content %}
     <form action="" method="post">
         <p>
             Please enter your bookmark here:
@@ -15,6 +11,4 @@
             <button type="submit">Submit</button>
         </p>
     </form>
-
-</body>
-</html>
+{% endblock %}
