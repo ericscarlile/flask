@@ -1,22 +1,37 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.flashes ul {
+    margin: 0 0;
+    background: #FFD6A3;
+    color: #000;
+
+    list-style-type: none;
+    list-style: none;
+}
+
+.flashes li {
+    background: #FFD6A3;
+    color: #000;
+}
+
+.article.flashes {
+    margin-bottom: 1em;
+}
 
 
+.error, .error input {
+    color: red;
+}
 
+tr.error td il {
+    margin-top: 0;
+}
 
+tr.submit button {
+    margin-top: 20px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+input, button {
+    margin-left: 10px;
+}

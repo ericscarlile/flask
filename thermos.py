@@ -1,29 +1,44 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
+from datetime import datetime
+
+from forms import BookmarkForm
+
 
 app = Flask(__name__)
 
-class User:
-    def __init__(self, first_name, last_name):
-        self.first_name = first_name
-        self.last_name = last_name
+bookmarks = []
+app.config['SECRET_KEY'] = '\xefa\x0c\x18\xb1\xfa\xda\xecyq%23\xb16\xab.c\xd1\xa7iG\x90\x1e'
 
-    def initials(self):
-        return ('{}. {}.'.format(self.first_name[0].upper(), self.last_name[0].upper()))
 
-    def __str__(self):
-        return ('{} {}'.format(self.first_name.title(), self.last_name.title()))
+def store_bookmark(url, description):
+    bookmarks.append(dict(
+        url = url,
+        description = description,
+        user = 'Eric',
+        date = datetime.utcnow()
+    ))
+
+
+def new_bookmarks(num):
+    return sorted(bookmarks, key=lambda bm: bm['date'], reverse=True)[:num]
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title="This is the context title!",
-                           user=User('eric', 'carlile'))
+    return render_template('index.html', new_bookmarks=new_bookmarks(5))
 
 
-@app.route('/add')
+@app.route('/add', methods=['GET', 'POST'])
 def add():
-    return render_template('add.html')
+    form = BookmarkForm()
+    if form.validate_on_submit():
+        url = form.url.data
+        description = form.description.data
+        store_bookmark(url, description)
+        flash("Stored '{}'".format(description))
+        return redirect(url_for('index'))
+    return render_template('add.html', form=form)
 
 
 @app.errorhandler(404)

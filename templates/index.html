@@ -15,10 +15,14 @@
       <!-- Example row of columns -->
       <article class="row">
         <section class="col-md-4">
-          <h2>Title: {{ title }}</h2>
-          <p>Text: {{ user }}</p>
-          <p>Initials: {{ user.initials() }}</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Recently Added</h2>
+            {% if new_bookmarks %}
+                <ul>
+                    {% for bm in new_bookmarks %}
+                    <li>{{ bm.user }} added <a href="{{ bm.url }}">{{ bm.url }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </section>
         <section class="col-md-4">
           <h2>Heading</h2>
